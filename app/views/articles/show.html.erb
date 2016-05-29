@@ -1,0 +1,50 @@
+<h1><%= @article.title %></h1>
+<p>
+	<%= @article.text %>
+</p>
+
+<p>
+	Article by <%= @users %>
+
+</p>
+<h2>Comments</h2>
+
+
+</p>
+<% if (@article.comments.count) > 1  %>
+
+	<% @article.comments.each do |comment| %>
+
+	<% if comment.author != nil %>
+	<p>
+	<i><%= comment.author %> said:<br /></i>
+
+
+
+	<%= comment.body %>
+</p>
+<hr/ >
+	<% end %>
+	<% end %>
+
+<% end %>
+
+
+
+<h2>Add comment</h2>
+<p>
+<%= form_for([@article, @article.comments.build]) do |f| %>
+
+
+	<p>
+	<%= f.label :body, 'Comment' %><br />
+	<%= f.text_area :body %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+
+<% end %>
+
+</p>
