@@ -7,14 +7,12 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    #скопировал из comments_controller
+    @comments = @article.comments.new(author: current_user.username, body: comment_params[:body])
     @users = User.find(@article.user_id).username
   end
 ################################
   def new
-    #скопировал из comments_controller
-    @article = Article.find(params[:article_id])
-    @comments = @article.comments.new(author: current_user.username, body: comment_params[:body])
-
   end
 
   def create
