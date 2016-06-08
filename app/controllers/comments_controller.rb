@@ -3,10 +3,14 @@ class CommentsController < ApplicationController
 
    def create
     @article = Article.find(params[:article_id])
-    #Здесь вот у меня был create! тот самый, что выкидывал в 500
-    @article.comments.create(author: current_user.username, body: comment_params[:body])
+    @comment = @article.comments.new(author: current_user.username, body: comment_params[:body])
 
-    redirect_to article_path(@article)
+    if @comment.save  
+       redirect_to article_path(@article)
+    else
+       flash[:error] = @comment.errors
+       redirect_to article_path(@article)
+     end
   end
 
 

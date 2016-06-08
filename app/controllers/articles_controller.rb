@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
     #скопировал из comments_controller
-    @comment = @article.comments.new(author: current_user.username, body: comment_params[:body])
+    @comment = @article.comments.new
     @users = User.find(@article.user_id).username
   end
 ################################

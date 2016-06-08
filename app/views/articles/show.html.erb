@@ -35,11 +35,14 @@
 <!--build отсюда надо закинуть в контроллер -->
 <%= form_for([@article, @article.comments.build]) do |f| %>
 
-
+<% if flash[:error] %>
+<div class="field_with_errors">
+<% end %>
 	<p>
 	<%= f.label :body, 'Comment' %><br />
 	<%= f.text_area :body %>
 	</p>
+  </div>
 
 	<p>
 		<%= f.submit %>
