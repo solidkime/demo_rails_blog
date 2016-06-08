@@ -1,8 +1,6 @@
 class Article < ActiveRecord::Base
 
 
-validates :title, exclusion: { in: %w(www us ca jp) ,
-    message: "sex is reserved."} 
   validates :title, presence: true
   validates :text, presence: true
   validates :title, length: {maximum: 140}

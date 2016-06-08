@@ -11,6 +11,10 @@ class ArticlesController < ApplicationController
   end
 ################################
   def new
+    #скопировал из comments_controller
+    @article = Article.find(params[:article_id])
+    @comments = @article.comments.new(author: current_user.username, body: comment_params[:body])
+
   end
 
   def create
@@ -52,6 +56,11 @@ end
 
   def article_params
     params.require(:article).permit(:title, :text, :user_id)
+  end
+
+#Надо сделать, чтобы работало и вэтом контроллере
+  def comment_params
+    params.require(:comment).permit(:author, :body)
   end
 
 end
